@@ -135,7 +135,10 @@ const HeroSection3 = ({
       )}
       {projectDetails.map(
         ({ name, description, technologies, active }, index) => (
-          <div className="flex flex-col gap-y-4 border rounded-lg w-full md:w-1/2 lg:w-1/3 backdrop-blur-md">
+          <div
+            key={index}
+            className="flex flex-col gap-y-4 border rounded-lg w-full md:w-1/2 lg:w-1/3 backdrop-blur-md"
+          >
             <div className="flex flex-row items-center justify-between">
               <p className="text-2xl font-serif px-2">{name}</p>
               {active !== undefined && (
