@@ -94,6 +94,7 @@ const experienceList: ExperienceProps[] = [
   },
 ];
 
+import { DynamicIcon } from "lucide-react/dynamic";
 import { motion, useInView } from "motion/react";
 
 const ExperienceModal = ({
@@ -137,16 +138,16 @@ const ExperienceModal = ({
         ref={cardRef}
         className="relative flex max-h-svh md:w-1/2 lg:w-1/3 mx-auto flex-col gap-y-4 p-2 rounded-lg border overflow-scroll"
       >
-        <button
-          autoFocus
-          className="absolute top-2 right-2 text-2xl pr-1"
-          onClick={closeModal}
-        >
-          X
-        </button>
         <div>
           <div className="flex flex-row items-start justify-between gap-x-4">
             <p className="text-2xl font-serif">{organization}</p>
+            <button
+              autoFocus
+              className=" text-2xl self-start"
+              onClick={closeModal}
+            >
+              <DynamicIcon name="x" />
+            </button>
           </div>
           <p className="text-2xl font-serif">{`${startYear} - ${endYear}`}</p>
           <p className="text-2xl">{role}</p>

@@ -1,5 +1,5 @@
 import { DynamicIcon } from "lucide-react/dynamic";
-import { useInView } from "motion/react";
+import { motion, useInView } from "motion/react";
 import { useEffect } from "react";
 
 const HeroSection4 = ({
@@ -18,10 +18,13 @@ const HeroSection4 = ({
   }, [isInView]);
 
   return (
-    <section
+    <motion.section
+      initial={{ opacity: 0 }}
+      animate={{ opacity: isInView ? 1 : 0 }}
+      transition={{ duration: 1 }}
       id="contact"
       ref={containerRef}
-      className="relative h-svh flex flex-col px-2 md:w-full md:items-center justify-center  gap-y-4 md:snap-start"
+      className="relative h-svh flex flex-col px-2 md:w-full md:items-center justify-center gap-y-4 md:snap-start"
     >
       <div className="flex flex-col items-center ">
         <img src="/assets/hero-section4.png" className="w-1/3" />
@@ -48,7 +51,7 @@ const HeroSection4 = ({
           </a>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

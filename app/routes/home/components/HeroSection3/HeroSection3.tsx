@@ -1,3 +1,4 @@
+import { DynamicIcon } from "lucide-react/dynamic";
 import { motion, useInView } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 
@@ -74,16 +75,16 @@ const ProjectModal = ({
         ref={cardRef}
         className="relative flex max-h-svh md:w-1/2 lg:w-1/3 mx-auto flex-col gap-y-4 p-2 rounded-lg border overflow-y-scroll"
       >
-        <button
-          className=" absolute top-2 right-2 text-2xl pr-1"
-          autoFocus
-          onClick={closeModal}
-        >
-          X
-        </button>
         <div>
           <div className="flex flex-row justify-between">
             <p className="text-2xl font-serif">{name}</p>
+            <button
+              className="text-2xl self-start"
+              autoFocus
+              onClick={closeModal}
+            >
+              <DynamicIcon name="x" />
+            </button>
           </div>
           <p className="text-lg">{description}</p>
         </div>
