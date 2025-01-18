@@ -5,9 +5,10 @@
 html,
 body {
   
-  @apply bg-slate-100 dark:bg-gray-900 antialiased scroll-smooth px-0;
+  @apply bg-gray-900 antialiased scroll-smooth px-0;
+  color-scheme: dark;
 
-  @media (prefers-color-scheme: dark) {
+  /* @media (prefers-color-scheme: dark) {
     color-scheme: dark;
-  }
+  } */
 }
