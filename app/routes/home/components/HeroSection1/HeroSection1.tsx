@@ -24,7 +24,6 @@ const HeroSection1 = ({
     setInitialAnimated(true);
     if (!initialAnimated) {
       await sleep(1000);
-      console.log("animation");
       await animate(
         "#hero-section1-cta",
         { transform: ["rotate(-5deg)", "rotate(5deg)", "rotate(0deg)"] },

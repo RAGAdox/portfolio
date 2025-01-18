@@ -95,7 +95,7 @@ const experienceList: ExperienceProps[] = [
 ];
 
 import { ArrowRight, X } from "lucide-react";
-import { motion, useInView } from "motion/react";
+import { motion, useAnimate, useInView } from "motion/react";
 
 const ExperienceModal = ({
   experienceDetail,
@@ -112,11 +112,25 @@ const ExperienceModal = ({
     responsibilities,
     technologies,
   } = experienceDetail;
-  const cardRef = useRef<HTMLDivElement>(null);
+  const [cardRef, cardAnimation] = useAnimate();
   const containerRef = useRef<HTMLDivElement>(null);
-  const closeModal = () => {
+
+  const handleAnimation = async (isEntry?: boolean) => {
+    await cardAnimation(
+      cardRef.current,
+      { scale: isEntry ? [0, 1] : [1, 0] },
+      { duration: 0.5 }
+    );
+  };
+
+  const closeModal = async () => {
+    await handleAnimation();
     setCurrentIndex(undefined);
   };
+
+  useEffect(() => {
+    handleAnimation(true);
+  }, []);
 
   const handleClickOutside = (e: any) => {
     if (
