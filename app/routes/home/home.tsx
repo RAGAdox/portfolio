@@ -18,7 +18,7 @@ export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
   const refArray = Array.from(
     { length: 4 },
-    () => useRef<HTMLElement>(null) as React.RefObject<HTMLElement>
+    () => useRef<HTMLDivElement>(null) as React.RefObject<HTMLDivElement>
   );
   const [currentIndex, setCurrentIndex] = useState(0);
 

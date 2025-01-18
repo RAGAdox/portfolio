@@ -1,4 +1,4 @@
-import { DynamicIcon } from "lucide-react/dynamic";
+import { Menu } from "lucide-react";
 import { useState } from "react";
 import "./TopNavigation.scss";
 
@@ -63,7 +63,7 @@ const TopNavigation = ({
         </div>
         <div className="relative flex flex-row md:hidden z-50">
           <button onClick={() => setIsOpen(!isOpen)}>
-            <DynamicIcon name="menu" />
+            <Menu />
           </button>
         </div>
         {isOpen && (

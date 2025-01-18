@@ -1,4 +1,4 @@
-import { DynamicIcon } from "lucide-react/dynamic";
+import { Github, Linkedin, Mail } from "lucide-react";
 import { motion, useInView } from "motion/react";
 import { useEffect } from "react";
 
@@ -37,17 +37,17 @@ const HeroSection4 = ({
             target="_blank"
             rel="noopener noreferrer"
           >
-            <DynamicIcon name="linkedin" />
+            <Linkedin />
           </a>
           <a
             href="https://github.com/RAGAdox"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <DynamicIcon name="github" />
+            <Github />
           </a>
           <a href="mailto:rishirishi20121997@gmail.com">
-            <DynamicIcon name="mail" />
+            <Mail />
           </a>
         </div>
       </div>

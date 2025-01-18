@@ -94,7 +94,7 @@ const experienceList: ExperienceProps[] = [
   },
 ];
 
-import { DynamicIcon } from "lucide-react/dynamic";
+import { ArrowRight, X } from "lucide-react";
 import { motion, useInView } from "motion/react";
 
 const ExperienceModal = ({
@@ -143,7 +143,7 @@ const ExperienceModal = ({
               className="text-2xl self-start"
               onClick={closeModal}
             >
-              <DynamicIcon name="x" />
+              <X />
             </button>
           </div>
           <p className="text-2xl font-serif">{`${startYear} - ${endYear}`}</p>
@@ -198,7 +198,7 @@ const ExperienceCard = ({
       >
         Know More
         <span>
-          <DynamicIcon name="arrow-right" />
+          <ArrowRight />
         </span>
       </button>
     </div>
