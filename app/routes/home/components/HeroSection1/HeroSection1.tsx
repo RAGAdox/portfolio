@@ -1,53 +1,133 @@
-import { motion, useInView } from "motion/react";
-import { useEffect } from "react";
-import { Link } from "react-router";
+import { Github, Linkedin, Mail } from "lucide-react";
+import { useAnimate, useInView } from "motion/react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import "./HeroSection1.scss";
 
 const HeroSection1 = ({
   containerRef,
   setInView,
 }: {
-  containerRef: React.RefObject<HTMLElement>;
+  containerRef: React.RefObject<HTMLDivElement>;
   setInView: () => void;
 }) => {
+  const [isInitialAnimation, setIsInitialAnimation] = useState<boolean>(true);
+  const imageDiv = useRef<HTMLDivElement>(null);
+  const textDiv = useRef<HTMLDivElement>(null);
   const isInView = useInView(containerRef, { amount: 0.5, once: false });
+  const [scope, animate] = useAnimate();
+  const setTextPosition = () => {
+    if (textDiv.current && imageDiv.current) {
+      const imageBoundingRect = imageDiv.current.getBoundingClientRect();
+      const textYPosition = imageBoundingRect.y + imageBoundingRect.height + 10;
+      textDiv.current.style.top = textYPosition + "px";
+    }
+  };
+
+  const animationOnPage = async () => {
+    await animate(
+      scope.current,
+      { opacity: isInView ? 1 : 0 },
+      { duration: 0.5 }
+    );
+    if (isInitialAnimation) {
+      await animate(
+        "#image-div",
+        { filter: ["blur(100px)", "blur(0px)"], opacity: [0, 1] },
+        { duration: 0.5 }
+      );
+      await animate(
+        "#text-div",
+        { y: [100, 0], opacity: [0, 1] },
+        { duration: 0.5 }
+      );
+
+      await animate(
+        "#text-div a:nth-of-type(1)",
+        { opacity: [0, 1], scale: [0, 1], y: [10, 0] },
+        { duration: 0.2 }
+      );
+      await animate(
+        "#text-div a:nth-of-type(2)",
+        { opacity: [0, 1], scale: [0, 1], y: [10, 0] },
+        { duration: 0.2 }
+      );
+      await animate(
+        "#text-div a:nth-of-type(3)",
+        { opacity: [0, 1], scale: [0, 1], y: [10, 0] },
+        { duration: 0.2 }
+      );
+    }
+  };
+
+  useLayoutEffect(() => {
+    setTextPosition();
+    window.addEventListener("resize", setTextPosition);
+    () => window.removeEventListener("resize", setTextPosition);
+  }, []);
+
   useEffect(() => {
     if (isInView) {
       setInView();
+      animationOnPage();
+      setIsInitialAnimation(false);
     }
   }, [isInView]);
+
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      animate={{ opacity: isInView ? 1 : 0 }}
-      transition={{ duration: 0.5 }}
-      ref={containerRef}
-      id="main"
-      className="home-section-1"
-    >
-      <div className="image-container">
-        <img src="/assets/hero-section1.png" className="image" />
-        <div className="pill-banner">
-          <span className="active"></span>
-          <p className="pill-text">Open to new Opportunities</p>
+    <div ref={containerRef}>
+      <section
+        ref={scope}
+        id="main"
+        className="section-1 h-svh md:snap-start flex flex-col items-center justify-center"
+      >
+        <div
+          id="image-div"
+          ref={imageDiv}
+          className="absolute flex flex-col items-center opacity-0"
+        >
+          <img
+            src="/assets/Hero-1.png"
+            alt="Rishi Mukherjee"
+            className="w-1/2 md:w-1/3 lg:w-1/5 rounded-full border-8 border-green-100/10"
+          />
         </div>
-      </div>
-      <div className="introduction-container">
-        <h1 className="name">Rishi Mukherjee</h1>
-        <h2 className="role">Full Stack Web Developer</h2>
-        <p className="summary">
-          Dynamic Software Developer with 5+ years of expertise crafting
-          seamless full-stack solutions using the MERN stack. Passionate about
-          building high-performing, scalable web applications that deliver
-          exceptional user experiences.
-        </p>
-      </div>
-      <div>
-        <Link to="#contact" className="home-section-1-cta">
-          Let's Connect 🤙🏻
-        </Link>
-      </div>
-    </motion.section>
+        <div
+          ref={textDiv}
+          id="text-div"
+          className="absolute text-center font-mono opacity-0"
+        >
+          <p className="text-2xl">Rishi Mukherjee</p>
+          <p className="text-lg">Full Stack Web Developer</p>
+          <div className="flex flex-row mt-2 gap-x-4 justify-center">
+            <a
+              href="http://www.linkedin.com/in/rishi-mukherjee-a89a11142"
+              target="_blank"
+              className="opacity-0"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn profile"
+            >
+              <Linkedin />
+            </a>
+            <a
+              href="https://github.com/RAGAdox"
+              target="_blank"
+              className="opacity-0"
+              rel="noopener noreferrer"
+              aria-label="GitHub profile"
+            >
+              <Github />
+            </a>
+            <a
+              href="mailto:rishirishi20121997@gmail.com"
+              aria-label="Compose Email"
+              className="opacity-0"
+            >
+              <Mail />
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 };
 
