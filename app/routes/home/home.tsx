@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import type { Route } from "./+types/home";
 
+import { Background } from "@/components/Background";
 import { TopNavigation } from "@/components/TopNavigation";
 import { HeroSection1 } from "./components/HeroSection1";
 import HeroSection2 from "./components/HeroSection2/HeroSection2";
@@ -24,6 +25,7 @@ export default function Home() {
 
   return (
     <>
+      <Background currentIndex={currentIndex} />
       <TopNavigation refArray={refArray} currentIndex={currentIndex} />
       <div
         ref={containerRef}
