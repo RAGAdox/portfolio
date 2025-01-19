@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, type RefObject } from "react";
 import type { Route } from "./+types/home";
 
 import { Background } from "@/components/Background";
@@ -33,7 +33,7 @@ export default function Home() {
         "
       >
         <HeroSection1
-          containerRef={refArray[0]}
+          containerRef={refArray[0] as RefObject<HTMLDivElement>}
           setInView={() => setCurrentIndex(0)}
         />
         <HeroSection2
