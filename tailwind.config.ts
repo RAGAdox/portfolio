@@ -5,7 +5,6 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        serif: ["Calistoga"],
         sans: [
           '"Inter"',
           "ui-sans-serif",
