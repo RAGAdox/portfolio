@@ -1,6 +1,9 @@
-import { Github, Linkedin, Mail } from "lucide-react";
+import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useAnimate, useInView } from "motion/react";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import "./HeroSection1.scss";
 
 const HeroSection1 = ({
@@ -106,7 +109,7 @@ const HeroSection1 = ({
               rel="noopener noreferrer"
               aria-label="LinkedIn profile"
             >
-              <Linkedin />
+              <FontAwesomeIcon icon={faLinkedin} size="lg" />
             </a>
             <a
               href="https://github.com/RAGAdox"
@@ -115,14 +118,14 @@ const HeroSection1 = ({
               rel="noopener noreferrer"
               aria-label="GitHub profile"
             >
-              <Github />
+              <FontAwesomeIcon icon={faGithub} size="lg" />
             </a>
             <a
               href="mailto:rishirishi20121997@gmail.com"
               aria-label="Compose Email"
               className="opacity-0"
             >
-              <Mail />
+              <FontAwesomeIcon icon={faEnvelope} size="lg" />
             </a>
           </div>
         </div>
