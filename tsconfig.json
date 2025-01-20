@@ -14,7 +14,6 @@
     "types": [
       "node",
       "vite/client",
-      "@react-three/fiber",
       "react",
       "react-dom"
     ],

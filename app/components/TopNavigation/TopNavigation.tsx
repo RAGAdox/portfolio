@@ -11,6 +11,10 @@ const topNavigationLinks: ITopNavigationLink[] = [
     display: "Home",
   },
   {
+    to: "#about",
+    display: "About",
+  },
+  {
     to: "#experience",
     display: "Experiences",
   },

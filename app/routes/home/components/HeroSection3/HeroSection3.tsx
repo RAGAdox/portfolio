@@ -1,4 +1,3 @@
-import { DynamicIcon } from "lucide-react/dynamic";
 import { motion, useInView } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 
@@ -83,7 +82,7 @@ const ProjectModal = ({
               autoFocus
               onClick={closeModal}
             >
-              <DynamicIcon name="x" />
+              {/* <DynamicIcon name="x" /> */}X
             </button>
           </div>
           <p className="text-lg">{description}</p>

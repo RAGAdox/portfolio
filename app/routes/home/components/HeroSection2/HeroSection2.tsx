@@ -94,7 +94,6 @@ const experienceList: ExperienceProps[] = [
   },
 ];
 
-import { DynamicIcon } from "lucide-react/dynamic";
 import { motion, useInView } from "motion/react";
 
 const ExperienceModal = ({
@@ -146,7 +145,7 @@ const ExperienceModal = ({
               className=" text-2xl self-start"
               onClick={closeModal}
             >
-              <DynamicIcon name="x" />
+              {/* <DynamicIcon name="x" /> */}X
             </button>
           </div>
           <p className="text-2xl font-serif">{`${startYear} - ${endYear}`}</p>
