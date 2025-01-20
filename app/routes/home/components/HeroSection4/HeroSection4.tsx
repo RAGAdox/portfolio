@@ -1,7 +1,7 @@
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { AnimatePresence, motion, useInView } from "motion/react";
-import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion, useAnimate, useInView } from "motion/react";
+import { useEffect, useState } from "react";
 
 const experiences: ExperienceProps[] = [
   {
@@ -49,12 +49,11 @@ const HeroSection4 = ({
   containerRef,
   setInView,
 }: {
-  containerRef: React.RefObject<HTMLElement>;
+  containerRef: React.RefObject<HTMLDivElement>;
   setInView: () => void;
 }) => {
-  const expRefArray = Array.from({ length: experiences.length }, () =>
-    useRef<HTMLDivElement>(null)
-  );
+  const [scope, animate] = useAnimate();
+
   const [currentExpIndex, setCurrentExpIndex] = useState<number>();
   const isInView = useInView(containerRef, { amount: 0.5, once: false });
 
@@ -62,6 +61,14 @@ const HeroSection4 = ({
     if (currentExpIndex !== undefined) {
       handleExpClick(event, currentExpIndex);
     }
+  };
+
+  const animationOnPage = async () => {
+    await animate(
+      scope.current,
+      { opacity: isInView ? [0, 1] : [1, 0] },
+      { duration: 0.5 }
+    );
   };
 
   const handleExpClick = async (event: any, index: number) => {
@@ -80,19 +87,16 @@ const HeroSection4 = ({
     if (!isInView) {
       setCurrentExpIndex(undefined);
     }
+    animationOnPage();
   }, [isInView]);
 
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      animate={{ opacity: isInView ? 1 : 0 }}
-      transition={{ duration: 1 }}
-      id="contact"
-      ref={containerRef}
-      className="h-svh md:snap-start flex items-center justify-center px-2 w-full md:1/2 lg:w-2/3 mx-auto "
-      onClick={handleClickOutside}
-    >
-      <AnimatePresence initial={false} mode="wait">
+    <div ref={containerRef} onClick={handleClickOutside}>
+      <section
+        id="contact"
+        ref={scope}
+        className="h-svh md:snap-start flex items-center justify-center px-2 w-full md:1/2 lg:w-2/3 mx-auto "
+      >
         <div className="grid grid-flow-row gap-4 w-full">
           {experiences.map((experience, experienceIndex) => {
             const {
@@ -108,20 +112,9 @@ const HeroSection4 = ({
               currentExpIndex === undefined
             )
               return (
-                <motion.div
+                <div
                   key={experienceIndex}
-                  ref={expRefArray[experienceIndex]}
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{
-                    height: "auto",
-                    opacity: 1,
-                  }}
-                  exit={{ height: 0, opacity: 0 }}
                   className="border rounded-md flex flex-col gap-2 p-2 cursor-pointer"
-                  transition={{
-                    duration: 0.3,
-                    ease: "easeInOut",
-                  }}
                   onClick={(event) => {
                     handleExpClick(event, experienceIndex);
                   }}
@@ -199,7 +192,11 @@ const HeroSection4 = ({
                             <motion.li
                               key={techIndex}
                               initial={{ scale: 0, opacity: 0, height: 0 }}
-                              animate={{ scale: 1, opacity: 1, height: "auto" }}
+                              animate={{
+                                scale: 1,
+                                opacity: 1,
+                                height: "auto",
+                              }}
                               exit={{ scale: 0, opacity: 0, height: 0 }}
                               transition={{
                                 duration: 0.2,
@@ -214,12 +211,12 @@ const HeroSection4 = ({
                       </ul>
                     </AnimatePresence>
                   </div>
-                </motion.div>
+                </div>
               );
           })}
         </div>
-      </AnimatePresence>
-    </motion.section>
+      </section>
+    </div>
   );
 };
 
