@@ -37,7 +37,7 @@ export default function Home() {
           setInView={() => setCurrentIndex(0)}
         />
         <HeroSection2
-          containerRef={refArray[1]}
+          containerRef={refArray[1] as RefObject<HTMLDivElement>}
           setInView={() => setCurrentIndex(1)}
         />
         <HeroSection3

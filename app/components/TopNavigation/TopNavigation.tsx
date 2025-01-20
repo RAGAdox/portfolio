@@ -15,16 +15,12 @@ const topNavigationLinks: ITopNavigationLink[] = [
     display: "About",
   },
   {
-    to: "#experience",
+    to: "#skills",
+    display: "Skills",
+  },
+  {
+    to: "#experiences",
     display: "Experiences",
-  },
-  {
-    to: "#projects",
-    display: "Projects",
-  },
-  {
-    to: "#contact",
-    display: "Contact",
   },
 ];
 

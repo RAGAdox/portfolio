@@ -29,8 +29,8 @@ const HeroSection1 = ({
   const animationOnPage = async () => {
     await animate(
       scope.current,
-      { opacity: isInView ? 1 : 0 },
-      { duration: 0.5 }
+      { opacity: isInView ? [0, 1] : [1, 0] },
+      { duration: 0.5, ease: "easeInOut" }
     );
     if (isInitialAnimation) {
       await animate(
@@ -64,16 +64,14 @@ const HeroSection1 = ({
 
   useLayoutEffect(() => {
     setTextPosition();
-    window.addEventListener("resize", setTextPosition);
-    () => window.removeEventListener("resize", setTextPosition);
   }, []);
 
   useEffect(() => {
     if (isInView) {
       setInView();
-      animationOnPage();
-      setIsInitialAnimation(false);
     }
+    setIsInitialAnimation(false);
+    animationOnPage();
   }, [isInView]);
 
   return (
