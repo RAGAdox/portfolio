@@ -95,7 +95,7 @@ const HeroSection1 = ({
         <div
           ref={textDiv}
           id="text-div"
-          className="absolute text-center font-mono opacity-0"
+          className="absolute text-center opacity-0"
         >
           <p className="text-2xl">Rishi Mukherjee</p>
           <p className="text-lg">Full Stack Web Developer</p>

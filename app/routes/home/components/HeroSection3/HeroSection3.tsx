@@ -81,7 +81,7 @@ const HeroSection3 = ({
         className="h-svh md:snap-start flex items-center px-2 w-full md:1/2 lg:w-2/3 mx-auto"
       >
         <div id="skills-div" className="w-full">
-          <p className="text-2xl font-mono">Skills</p>
+          <p className="text-2xl">Skills</p>
           <div className="grid gap-2">
             {Object.entries(skills).map(
               ([category, categorySkills], categoryIndex) => {
@@ -97,7 +97,7 @@ const HeroSection3 = ({
                         handleSkillContainerClick(categoryIndex);
                       }}
                     >
-                      <p className="capitalize text-lg font-mono hover:underline">
+                      <p className="capitalize text-lg hover:underline">
                         {category}
                       </p>
                       <motion.span

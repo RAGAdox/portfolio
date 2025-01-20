@@ -121,18 +121,16 @@ const HeroSection4 = ({
                 >
                   <div>
                     <div className="flex flex-col md:flex-row md:items-center justify-between">
-                      <p className="text-2xl font-mono">{organization}</p>
+                      <p className="text-2xl">{organization}</p>
                       <p className="text-lg">
                         {startYear} - {endYear}
                       </p>
                     </div>
-                    <p className="text-lg font-mono">{role}</p>
+                    <p className="text-lg">{role}</p>
                   </div>
                   <div>
                     <button className="flex flex-row gap-2 items-center hover:underline">
-                      <p className="text-lg text-left  font-mono">
-                        Responsibilities
-                      </p>
+                      <p className="text-lg text-left">Responsibilities</p>
                       <motion.span
                         animate={{
                           transform:
@@ -152,7 +150,6 @@ const HeroSection4 = ({
                             (responsibility, responsibilityIndex) => (
                               <motion.li
                                 key={responsibilityIndex}
-                                className="font-mono"
                                 initial={{ opacity: 0, height: 0 }}
                                 animate={{ opacity: 1, height: "auto" }}
                                 exit={{ opacity: 0, height: 0 }}
@@ -171,7 +168,7 @@ const HeroSection4 = ({
                   </div>
                   <div>
                     <button className="flex flex-row gap-2 items-center hover:underline">
-                      <p className="text-lg font-mono">Technologies Used</p>
+                      <p className="text-lg">Technologies Used</p>
                       <motion.span
                         animate={{
                           transform:
@@ -203,7 +200,7 @@ const HeroSection4 = ({
                                 delay: techIndex / 20,
                                 ease: "easeInOut",
                               }}
-                              className="font-mono bg-black px-2 rounded-md"
+                              className="bg-black px-2 rounded-md"
                             >
                               {tech}
                             </motion.li>

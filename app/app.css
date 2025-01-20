@@ -5,7 +5,7 @@
 html,
 body {
   
-  @apply bg-gray-900 antialiased scroll-smooth px-0;
+  @apply bg-gray-900 antialiased scroll-smooth px-0 font-mono;
   color-scheme: dark;
 
    @media (prefers-color-scheme: dark) {
